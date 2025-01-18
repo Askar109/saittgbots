@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Websites & Telegram Bots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            animation: fadeIn 2s;
+        }
+        header p {
+            animation: fadeIn 3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .top-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .top-buttons a {
+            text-decoration: none;
+            background-color: white;
+            color: #4caf50;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .top-buttons a:hover {
+            background-color: #e8f5e9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .service {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        .service:hover {
+            transform: scale(1.05);
+        }
+        .chat-section {
+            margin: 40px 0;
+        }
+        .chat-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .chat-box div {
+            margin: 10px 0;
+        }
+        .chat-box .customer {
+            text-align: left;
+            color: #4caf50;
+        }
+        .chat-box .executor {
+            text-align: right;
+            color: #2e7d32;
+        }
+        .chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+        .chat-input select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            outline: none;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            border: none;
+            background: #4caf50;
+            color: white;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .chat-input button:hover {
+            background: #2e7d32;
+        }
+        .reviews {
+            margin: 40px 0;
+        }
+        .review {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: slideIn 1s;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Custom Websites & Telegram Bots</h1>
+        <p>We create tailored solutions for your business needs</p>
+        <div class="top-buttons">
+            <a href="#services">Our Services</a>
+            <a href="#chat">Chat Section</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="services" class="services">
+            <div class="service">
+                <h2>Website Development</h2>
+                <p>Professional and user-friendly websites.</p>
+            </div>
+            <div class="service">
+                <h2>Telegram Bots</h2>
+                <p>Custom bots to automate your processes.</p>
+            </div>
+        </section>
+
+        <section id="chat" class="chat-section">
+            <h2>Chat Between Customer and Executor</h2>
+            <div class="chat-box" id="chatBox">
+                <div class="customer">Customer: I need a website for my business.</div>
+                <div class="executor">Executor: Sure, let’s discuss the details!</div>
+            </div>
+            <div class="chat-input">
+                <select id="roleSelector">
+                    <option value="customer">Customer</option>
+                    <option value="executor">Executor</option>
+                </select>
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2>Customer Reviews</h2>
+            <div class="review">"Amazing service! My website looks fantastic." - John Doe</div>
+            <div class="review">"The Telegram bot they made for my business is super helpful!" - Jane Smith</div>
+        </section>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const chatBox = document.getElementById('chatBox');
+            const chatInput = document.getElementById('chatInput');
+            const roleSelector = document.getElementById('roleSelector');
+            const message = chatInput.value;
+            const role = roleSelector.value;
+
+            if (message.trim() !== "") {
+                const userMessage = document.createElement('div');
+                userMessage.className = role;
+                userMessage.textContent = `${role === 'customer' ? 'Customer' : 'Executor'}: ${message}`;
+                chatBox.appendChild(userMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                chatInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
